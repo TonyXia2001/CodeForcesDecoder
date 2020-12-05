@@ -35,7 +35,7 @@ class Problem:
         return res[:-1]
 
     def to_csv(self):
-        return f"{self.contest_id},{self.in_contest_id},{self.name},{self.type},{self.points},{self.rating},{self._tags_to_str()}"
+        return f"{self.contest_id}\t{self.in_contest_id}\t{self.name}\t{self.type}\t{self.points}\t{self.rating}\t{self._tags_to_str()}"
 
 problems = []
 
@@ -48,7 +48,7 @@ def main():
             problems.append(Problem(each))
         
         with open("api-out.csv", "w+") as f:
-            f.write("contest_id,in_contest_id,name,type,points,rating,tags\n")
+            f.write("contest_id\tin_contest_id\tname\ttype\tpoints\trating\ttags\n")
             for each in problems:
                 f.write(each.to_csv())
                 f.write("\n")
