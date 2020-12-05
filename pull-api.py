@@ -27,8 +27,15 @@ class Problem:
         self.rating = obj["rating"] if "rating" in obj else -1
         self.tags = obj["tags"]
     
-    def __str__(self):
-        return f"{self.contest_id},{self.in_contest_id},{self.name},{self.type},{self.points},{self.rating},{self.tags}"
+    def _tags_to_str(self):
+        res = ""
+        for each in self.tags:
+            res += each
+            res += "/"
+        return res[:-1]
+
+    def to_csv(self):
+        return f"{self.contest_id},{self.in_contest_id},{self.name},{self.type},{self.points},{self.rating},{self._tags_to_str()}"
 
 problems = []
 
@@ -43,7 +50,7 @@ def main():
         with open("api-out.csv", "w+") as f:
             f.write("contest_id,in_contest_id,name,type,points,rating,tags\n")
             for each in problems:
-                f.write(each.__str__())
+                f.write(each.to_csv())
                 f.write("\n")
             print(f"finished writing {len(problems)} to file api-out.csv")
         sleep(0.5)
