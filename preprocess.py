@@ -54,7 +54,7 @@ with open("preprocessed.tsv", "w+") as f:
         for i in range(len(values)):
             f.write(values[i].__str__())
             if (i < len(values) - 1):
-                f.write("\t")
+                f.write("`|`")
             else:
                 f.write("\n")
             
